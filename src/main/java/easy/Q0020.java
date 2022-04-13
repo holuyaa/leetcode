@@ -21,25 +21,26 @@ public class Q0020 {
 
     public boolean isValid(String s) {
         final Stack<Character> stack = new Stack<>();
-        for (int i = 0; i < s.length(); i++) {
-            final char c = s.charAt(i);
+        for (char c : s.toCharArray()) {
             switch (c) {
                 case '(':
+                    stack.push(')');
+                    break;
                 case '[':
+                    stack.push(']');
+                    break;
                 case '{':
-                    stack.push(c);
+                    stack.push('}');
                     break;
                 case ')':
                 case ']':
                 case '}':
-                    if (stack.empty() || Math.abs(c - stack.peek()) > 2) {
+                    if (stack.empty() || stack.pop() != c) {
                         return false;
                     }
-                    stack.pop();
-                    break;
             }
         }
 
-        return stack.empty();
+        return stack.isEmpty();
     }
 }
