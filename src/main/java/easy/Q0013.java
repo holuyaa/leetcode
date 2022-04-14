@@ -1,6 +1,7 @@
 package easy;
 
 public class Q0013 {
+
     private static final int[] ROMAN_TABLE = new int['X' - 'C' + 1];
 
     static {
@@ -11,16 +12,6 @@ public class Q0013 {
         ROMAN_TABLE['C' - 'C'] = 100;
         ROMAN_TABLE['D' - 'C'] = 500;
         ROMAN_TABLE['M' - 'C'] = 1000;
-    }
-
-    public static void main(String[] args) {
-        final Q0013 q = new Q0013();
-        for (String testcase : new String[]{
-                "III",
-                "LVIII",
-                "MCMXCIV"
-        })
-        System.out.println(q.romanToInt(testcase));
     }
 
     private static int convert(char c) {

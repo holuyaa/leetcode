@@ -1,19 +1,6 @@
 package easy;
 
-import java.util.Arrays;
-
 public class Q0014 {
-    public static void main(String[] args) {
-        final Q0014 q = new Q0014();
-        for (String[] testcase : new String[][]{
-                {"flower", "flower", "flower", "flower"},
-                {"flower","flow","flight"},
-                {"dog","racecar","car"},
-                {"a"},
-        }) {
-            System.out.println(q.longestCommonPrefix(testcase));
-        }
-    }
 
     public String longestCommonPrefix(String[] strs) {
         if (strs == null || strs.length == 0) return "";
