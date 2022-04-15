@@ -1,6 +1,5 @@
 package com.leetcode.easy;
 
-import com.leetcode.easy.Q0104;
 import org.junit.jupiter.api.Test;
 
 import java.util.function.ToIntFunction;

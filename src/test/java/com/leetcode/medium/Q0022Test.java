@@ -1,6 +1,5 @@
 package com.leetcode.medium;
 
-import com.leetcode.medium.Q0022;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

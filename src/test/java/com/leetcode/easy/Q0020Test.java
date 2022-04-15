@@ -1,9 +1,8 @@
 package com.leetcode.easy;
 
-import com.leetcode.easy.Q0020;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Q0020Test {
 
