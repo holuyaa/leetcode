@@ -1,5 +1,6 @@
-package easy;
+package com.leetcode.easy;
 
+import com.leetcode.easy.Q0001;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

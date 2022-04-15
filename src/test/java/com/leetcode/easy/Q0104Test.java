@@ -1,10 +1,11 @@
-package easy;
+package com.leetcode.easy;
 
+import com.leetcode.easy.Q0104;
 import org.junit.jupiter.api.Test;
 
 import java.util.function.ToIntFunction;
 
-import static easy.Q0104.TreeNode;
+import static com.leetcode.easy.Q0104.TreeNode;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Q0104Test {
