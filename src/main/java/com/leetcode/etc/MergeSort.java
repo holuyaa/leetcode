@@ -3,40 +3,37 @@ package com.leetcode.etc;
 public class MergeSort {
 
     public int[] sort(int[] array) {
-        final int[] tmpArray = new int[array.length];
-        sort(array, 0, array.length - 1, tmpArray);
+        sort(array, 0, array.length - 1);
         return array;
     }
 
-    private void sort(int[] array, int left, int right, int[] tmpArray) {
-        if (left == right) return;
+    private void sort(int[] array, int left, int right) {
+        if (right == left) return;
 
         final int mid = (right + left) / 2;
-        sort(array, left, mid, tmpArray);
-        sort(array, mid + 1, right, tmpArray);
-        merge(array, left, right, tmpArray);
+        sort(array, left, mid);
+        sort(array, mid + 1, right);
+        merge(array, left, right);
     }
 
-    private void merge(int[] array, int left, int right, int[] tmpArray) {
+    private void merge(int[] array, int left, int right) {
+        final int[] tmp = new int[right - left + 1];
         final int mid = (right + left) / 2;
 
         int l = left;
         int r = mid + 1;
-        int s = left;
+        int t = 0;
+
         while (l <= mid && r <= right) {
-            tmpArray[s++] = array[l] <= array[r] ? array[l++] : array [r++];
+            tmp[t++] = array[l] <= array[r] ? array[l++] : array [r++];
         }
 
-        if (l > mid) {
-            for (int i = r; i <= right; i++) {
-                tmpArray[s++] = array[i];
-            }
+        if (l <= mid) {
+            System.arraycopy(array, l, tmp, t, mid - l + 1);
         } else {
-            for (int i = l; i <= mid; i++) {
-                tmpArray[s++] = array[i];
-            }
+            System.arraycopy(array, r, tmp, t, right - r + 1);
         }
 
-        System.arraycopy(tmpArray, left, array, left, right + 1 - left);
+        System.arraycopy(tmp, 0, array, left, right - left + 1);
     }
 }
