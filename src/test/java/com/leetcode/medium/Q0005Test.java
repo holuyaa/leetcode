@@ -44,4 +44,22 @@ class Q0005Test {
         final Q0005 q = new Q0005();
         longestPalindrome(q::longestPalindrome3);
     }
+
+    @Test
+    void longestPalindrome4() {
+        final Q0005 q = new Q0005();
+        longestPalindrome(q::longestPalindrome4);
+    }
+
+    @Test
+    void longestPalindrome5() {
+        final Q0005 q = new Q0005();
+        longestPalindrome(q::longestPalindrome5);
+    }
+
+    @Test
+    void longestPalindrome6() {
+        final Q0005 q = new Q0005();
+        longestPalindrome(q::longestPalindrome6);
+    }
 }

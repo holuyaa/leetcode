@@ -1,6 +1,7 @@
 package com.leetcode.medium;
 
 public class Q0005 {
+
     public String longestPalindrome(String s) {
         String max = s.substring(0, 1);
         final int n = s.length();
@@ -64,6 +65,79 @@ public class Q0005 {
                         }
                     }
                 } else palindrome[i][j] = false;
+            }
+        }
+        return s.substring(start, start + maxLen);
+    }
+
+    public String longestPalindrome4(String s) {
+        if (s.length() < 2)
+            return s;
+
+        String max = s.substring(0, 1);
+        for (int i = 0; i < s.length() - 1; i++) {
+            String tmp = expand4(s, i, i);
+            if (max.length() < tmp.length()) max = tmp;
+            tmp = expand4(s, i, i + 1);
+            if (max.length() < tmp.length()) max = tmp;
+        }
+        return max;
+    }
+
+    private String expand4(String s, int left, int right) {
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+        return s.substring(left + 1, right);
+    }
+
+    public String longestPalindrome5(String s) {
+        if (s.length() < 2)
+            return s;
+
+        int start = 0, maxLen = 0;
+
+        for (int i = 0; i < s.length() - 1; i++) {
+            final int len = Math.max(expand5(s, i, i), expand5(s, i, i + 1));
+            if (maxLen < len) {
+                maxLen = len;
+                start = i - ((len - 1) >> 1);
+            }
+        }
+        return s.substring(start, start + maxLen);
+    }
+
+    private int expand5(String s, int left, int right) {
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+
+        return right - left - 1;
+    }
+
+    public String longestPalindrome6(String s) {
+        final int len = s.length();
+        if (len < 2) return s;
+
+        int start = 0;
+        int maxLen = 1;
+        int left, right;
+        for (int i = 0; i < len && len - i > maxLen / 2; ) {
+            left = right = i;
+            while (right < len - 1 && s.charAt(right) == s.charAt(right + 1)) {
+                right++;
+            }
+            i = right + 1;  // can save time dramatically
+            while (left > 0 && right < len - 1 && s.charAt(left - 1) == s.charAt(right + 1)) {
+                left--;
+                right++;
+            }
+
+            if (maxLen < right - left + 1) {
+                maxLen = right - left + 1;
+                start = left;
             }
         }
         return s.substring(start, start + maxLen);
