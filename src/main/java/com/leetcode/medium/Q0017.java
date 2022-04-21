@@ -2,6 +2,7 @@ package com.leetcode.medium;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Q0017 {
@@ -36,5 +37,19 @@ public class Q0017 {
             buffer[pos] = c;
             letterCombinations(digits, pos + 1, buffer, result);
         }
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    public List<String> letterCombinations1(String digits) {
+        if (digits.isEmpty()) return Collections.emptyList();
+        final LinkedList<String> result = new LinkedList<>();
+        result.offer("");
+        while (result.peek().length() < digits.length()) {
+            final String prefix = result.poll();
+            for (char c : TABLE[digits.charAt(prefix.length()) - '0']) {
+                result.offer(prefix + c);
+            }
+        }
+        return result;
     }
 }
