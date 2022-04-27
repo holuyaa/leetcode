@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.function.BiFunction;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -30,8 +31,18 @@ class Q0039Test {
     @Test
     void combinationSum() {
         final Q0039 q = new Q0039();
+        combinationSum(q::combinationSum);
+    }
+
+    @Test
+    void combinationSum1() {
+        final Q0039 q = new Q0039();
+        combinationSum(q::combinationSum1);
+    }
+
+    private void combinationSum(BiFunction<int[], Integer, List<List<Integer>>> func) {
         for (int i = 0; i < TESTCASES.length; i++) {
-            final List<List<Integer>> actual = q.combinationSum(TESTCASES[i], TARGETS[i]);
+            final List<List<Integer>> actual = func.apply(TESTCASES[i], TARGETS[i]);
             assertListEquals(EXPECTED.get(i), actual);
         }
     }
