@@ -40,6 +40,18 @@ class Q0039Test {
         combinationSum(q::combinationSum1);
     }
 
+    @Test
+    void combinationSum2() {
+        final Q0039 q = new Q0039();
+        combinationSum(q::combinationSum2);
+    }
+
+    @Test
+    void combinationSum3() {
+        final Q0039 q = new Q0039();
+        combinationSum(q::combinationSum3);
+    }
+
     private void combinationSum(BiFunction<int[], Integer, List<List<Integer>>> func) {
         for (int i = 0; i < TESTCASES.length; i++) {
             final List<List<Integer>> actual = func.apply(TESTCASES[i], TARGETS[i]);
