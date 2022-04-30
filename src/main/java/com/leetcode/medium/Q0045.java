@@ -34,29 +34,13 @@ public class Q0045 {
 
     public int jump2(int[] numbers) {
         if (numbers.length < 2) return 0;
-        int step = 0, currentMax = 0, i = 0, nextMax = 0;
-        while (currentMax - i + 1 > 0) {
-            step++;
-            for (; i <= currentMax; i++) {
-                nextMax = Math.max(nextMax, numbers[i] + i);
-                if (nextMax >= numbers.length - 1)
-                    return step;
-            }
-            currentMax = nextMax;
-        }
-        return 0;
-    }
-
-    public int jump3(int[] numbers) {
-        int jumps = 0, farthest = 0;
-        int left = 0, right = 0;
+        int level = 0, left = 0, right = 0, max = 0;
         while (right < numbers.length - 1) {
-            for (int i = left; i <= right; ++i)
-                farthest = Math.max(farthest, i + numbers[i]);
+            for (int i = left; i <= right; i++) max = Math.max(max, numbers[i] + i);
             left = right + 1;
-            right = farthest;
-            ++jumps;
+            right = max;
+            level++;
         }
-        return jumps;
+        return level;
     }
 }
