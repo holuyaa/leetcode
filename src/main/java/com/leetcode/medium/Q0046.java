@@ -6,12 +6,12 @@ import java.util.List;
 public class Q0046 {
     public List<List<Integer>> permute(int[] numbers) {
         final List<List<Integer>> result = new ArrayList<>();
-        permute(numbers, new boolean[numbers.length], new ArrayList<>(), result, 0);
+        permute(numbers, new boolean[numbers.length], new ArrayList<>(), result);
         return result;
     }
 
-    private void permute(int[] numbers, boolean[] visited, List<Integer> tmp, List<List<Integer>> result, int pos) {
-        if (pos == numbers.length) {
+    private void permute(int[] numbers, boolean[] visited, List<Integer> tmp, List<List<Integer>> result) {
+        if (tmp.size() == numbers.length) {
             result.add(new ArrayList<>(tmp));
             return;
         }
@@ -20,7 +20,7 @@ public class Q0046 {
             if (!visited[i]) {
                 visited[i] = true;
                 tmp.add(numbers[i]);
-                permute(numbers, visited, tmp, result, pos + 1);
+                permute(numbers, visited, tmp, result);
                 tmp.remove(tmp.size() - 1);
                 visited[i] = false;
             }
