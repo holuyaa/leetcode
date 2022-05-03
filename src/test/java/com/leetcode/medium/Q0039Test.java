@@ -55,14 +55,7 @@ class Q0039Test {
     private void combinationSum(BiFunction<int[], Integer, List<List<Integer>>> func) {
         for (int i = 0; i < TESTCASES.length; i++) {
             final List<List<Integer>> actual = func.apply(TESTCASES[i], TARGETS[i]);
-            assertListEquals(EXPECTED.get(i), actual);
-        }
-    }
-
-    private void assertListEquals(List<List<Integer>> expected, List<List<Integer>> actual) {
-        assertEquals(expected.size(), actual.size());
-        for (int i = 0; i < expected.size(); i++) {
-            assertEquals(expected.get(i), actual.get(i));
+            assertEquals(EXPECTED.get(i), actual);
         }
     }
 }

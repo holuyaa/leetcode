@@ -26,14 +26,7 @@ class Q0046Test {
         for (int i = 0; i < TESTCASES.length; i++) {
             final List<List<Integer>> actual = q.permute(TESTCASES[i]);
             System.out.println(actual);
-            assertListEquals(EXPECTED.get(i), actual);
-        }
-    }
-
-    private void assertListEquals(List<List<Integer>> expected, List<List<Integer>> actual) {
-        assertEquals(expected.size(), actual.size());
-        for (int i = 0; i < expected.size(); i++) {
-            assertEquals(expected.get(i), actual.get(i));
+            assertEquals(EXPECTED.get(i), actual);
         }
     }
 }

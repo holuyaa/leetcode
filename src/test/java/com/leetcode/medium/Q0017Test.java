@@ -39,14 +39,7 @@ class Q0017Test {
         for (int i = 0; i < TESTCASES.length; i++) {
             final List<String> actual = func.apply(TESTCASES[i]);
             System.out.println(actual);
-            assertListEquals(EXPECTED.get(i), actual);
-        }
-    }
-
-    private void assertListEquals(List<String> expected, List<String> actual) {
-        assertEquals(expected.size(), actual.size());
-        for (int i = 0; i < expected.size(); i++) {
-            assertEquals(expected.get(i), actual.get(i));
+            assertEquals(EXPECTED.get(i), actual);
         }
     }
 }
