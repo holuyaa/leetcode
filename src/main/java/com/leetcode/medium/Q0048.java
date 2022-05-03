@@ -17,4 +17,48 @@ public class Q0048 {
         matrix[n - y][n - x] = matrix[x][n - y];
         matrix[x][n - y] = tmp;
     }
+
+    public void rotate1(int[][] matrix) {
+        // transpose and then reflect (left to right)
+        transpose(matrix);
+        reflect1(matrix);
+    }
+
+    private void transpose(int[][] matrix) {
+        for (int i = 0; i < matrix.length - 1; i++) {
+            for (int j = i + 1; j < matrix.length; j++) {
+                final int tmp = matrix[j][i];
+                matrix[j][i] = matrix[i][j];
+                matrix[i][j] = tmp;
+            }
+        }
+    }
+
+    private void reflect1(int[][] matrix) {
+        final int n = matrix.length - 1;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length / 2; j++) {
+                final int tmp = matrix[i][j];
+                matrix[i][j] = matrix[i][n - j];
+                matrix[i][n - j] = tmp;
+            }
+        }
+    }
+
+    public void rotate2(int[][] matrix) {
+        // reflect (up to down) and then transpose
+        reflect2(matrix);
+        transpose(matrix);
+    }
+
+    private void reflect2(int[][] matrix) {
+        final int n = matrix.length - 1;
+        for (int i = 0; i < matrix.length / 2; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                final int tmp = matrix[i][j];
+                matrix[i][j] = matrix[n - i][j];
+                matrix[n - i][j] = tmp;
+            }
+        }
+    }
 }
