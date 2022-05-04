@@ -26,4 +26,14 @@ public class Q0062 {
         }
         return dp[m - 1][n - 1];
     }
+
+    public int uniquePaths2(int m, int n) {
+        if (m < n) uniquePaths2(n, m);
+        long result = 1;
+        for (int i = m, j = 1;  j < n; i++, j++) {
+            result *= i;
+            result /= j;
+        }
+        return (int)result;
+    }
 }

@@ -18,6 +18,8 @@ class Q0062Test {
             2,
             1,
             1,
+            10,
+            10,
     };
 
     private static final int[] EXPECTED = new int[]{
@@ -26,6 +28,7 @@ class Q0062Test {
             28,
             3,
             1,
+            48620,
     };
 
     @Test
@@ -38,6 +41,12 @@ class Q0062Test {
     void uniquePaths1() {
         final Q0062 q = new Q0062();
         uniquePaths(q::uniquePaths1);
+    }
+
+    @Test
+    void uniquePaths2() {
+        final Q0062 q = new Q0062();
+        uniquePaths(q::uniquePaths2);
     }
 
     private void uniquePaths(BiFunction<Integer, Integer, Integer> func) {
