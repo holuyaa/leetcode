@@ -11,4 +11,19 @@ public class Nodes {
         }
         return root;
     }
+
+    public static TreeNode treeOf(Integer[] array) {
+        if (array == null || array.length == 0) return null;
+        return createTree(array, 0);
+    }
+
+    private static TreeNode createTree(Integer[] array, int index) {
+        if (array.length <= index || array[index] == null) return null;
+        final TreeNode node = new TreeNode(array[index]);
+        final int leftIndex = (index * 2) + 1;
+        final int rightIndex = leftIndex + 1;
+        node.left = createTree(array, leftIndex);
+        node.right = createTree(array, rightIndex);
+        return node;
+    }
 }

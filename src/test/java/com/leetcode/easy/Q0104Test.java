@@ -1,10 +1,11 @@
 package com.leetcode.easy;
 
+import com.leetcode.Nodes;
+import com.leetcode.TreeNode;
 import org.junit.jupiter.api.Test;
 
 import java.util.function.ToIntFunction;
 
-import static com.leetcode.easy.Q0104.TreeNode;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Q0104Test {
@@ -18,24 +19,6 @@ class Q0104Test {
     private static final int[] EXPECTED = new int[]{
             3, 2, 0
     };
-
-    private static TreeNode createTree(Integer[] testcase) {
-        if (testcase.length == 0) return null;
-        return createTree(testcase, 0);
-    }
-
-    private static TreeNode createTree(Integer[] testcase, int index) {
-        final TreeNode node = new TreeNode(testcase[index]);
-        final int leftIndex = (index * 2) + 1;
-        final int rightIndex = leftIndex + 1;
-        if (leftIndex < testcase.length && testcase[leftIndex] != null) {
-            node.left = createTree(testcase, leftIndex);
-        }
-        if (rightIndex < testcase.length && testcase[rightIndex] != null) {
-            node.right = createTree(testcase, leftIndex + 1);
-        }
-        return node;
-    }
 
     @Test
     void maxDepth() {
@@ -51,7 +34,7 @@ class Q0104Test {
 
     private void maxDepth(ToIntFunction<TreeNode> func) {
         for (int i = 0; i < TESTCASES.length; i++) {
-            final TreeNode root = createTree(TESTCASES[i]);
+            final TreeNode root = Nodes.treeOf(TESTCASES[i]);
             final int actual = func.applyAsInt(root);
             assertEquals(EXPECTED[i], actual);
             System.out.println(actual);
