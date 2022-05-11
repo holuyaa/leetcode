@@ -35,4 +35,29 @@ public class Q0079 {
         }
         return false;
     }
+
+    public boolean exist1(char[][] board, String word) {
+        final int m = board.length;
+        final int n = board[0].length;
+        final char[] chars = word.toCharArray();
+        for (int y = 0; y < m; y++) {
+            for (int x = 0; x < n; x++) {
+                if (check1(board, chars, x, y, 0)) return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean check1(char[][] board, char[] word, int x, int y, int pos) {
+        if (pos == word.length) return true;
+        if (x < 0 || y < 0 || x == board[0].length || y == board.length) return false;
+        if (board[y][x] != word[pos]) return false;
+        board[y][x] = '*';
+        final boolean exist = check1(board, word, x - 1, y, pos + 1) ||
+                check1(board, word, x, y - 1, pos + 1) ||
+                check1(board, word, x + 1, y, pos + 1) ||
+                check1(board, word, x, y + 1, pos + 1);
+        board[y][x] = word[pos];
+        return exist;
+    }
 }

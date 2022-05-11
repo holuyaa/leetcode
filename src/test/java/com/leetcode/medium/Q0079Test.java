@@ -2,6 +2,8 @@ package com.leetcode.medium;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.function.BiFunction;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -27,8 +29,18 @@ class Q0079Test {
     @Test
     void exist() {
         final Q0079 q = new Q0079();
+        exist(q::exist);
+    }
+
+    @Test
+    void exist1() {
+        final Q0079 q = new Q0079();
+        exist(q::exist1);
+    }
+
+    private void exist(BiFunction<char[][], String, Boolean> func) {
         for (int i = 0; i < TESTCASES.length; i++) {
-            final boolean actual = q.exist(TESTCASES[i], WORDS[i]);
+            final boolean actual = func.apply(TESTCASES[i], WORDS[i]);
             System.out.println(actual);
             assertThat(actual, is(EXPECTED[i]));
         }
