@@ -30,6 +30,12 @@ class Q0094Test {
         inorderTraversal(q::inorderTraversal);
     }
 
+    @Test
+    void inorderTraversal1() {
+        final Q0094 q = new Q0094();
+        inorderTraversal(q::inorderTraversal1);
+    }
+
     private void inorderTraversal(Function<TreeNode, List<Integer>> func) {
         for (int i = 0; i < TESTCASES.length; i++) {
             final List<Integer> actual = func.apply(Nodes.treeOf(TESTCASES[i]));
