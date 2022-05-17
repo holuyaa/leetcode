@@ -59,7 +59,7 @@ public class Q0105 {
     private TreeNode buildTree1(int[] preorder, int preIndex, int left, int right) {
         if (preorder.length - 1 < preIndex || right < left) return null;
 
-        final int rootValue = preorder[preorderIndex++];
+        final int rootValue = preorder[preIndex];
         final TreeNode root = new TreeNode(rootValue);
         final int inIndex = inorderMap.get(rootValue);
 
