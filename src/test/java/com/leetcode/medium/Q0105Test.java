@@ -35,6 +35,12 @@ class Q0105Test {
         buildTree(q::buildTree);
     }
 
+    @Test
+    void buildTree1() {
+        final Q0105 q = new Q0105();
+        buildTree(q::buildTree1);
+    }
+
     private void buildTree(BiFunction<int[], int[], TreeNode> func) {
         for (int i = 0; i < TESTCASES.length; i += 2) {
             final TreeNode actual = func.apply(TESTCASES[i], TESTCASES[i + 1]);

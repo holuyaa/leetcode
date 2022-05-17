@@ -22,26 +22,49 @@ import java.util.Map;
  */
 public class Q0105 {
     private int preorderIndex;
+    private final Map<Integer, Integer> inorderMap = new HashMap<>();
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         final int n = preorder.length;
         if (n == 0) return null;
 
         preorderIndex = 0;
-        final Map<Integer, Integer> inorderMap = new HashMap<>();
-        for (int i = 0; i < n; i++) {
-            inorderMap.put(inorder[i], i);
-        }
-        return buildTree(preorder, 0, n - 1, inorderMap);
+        inorderMap.clear();
+        for (int i = 0; i < n; i++) inorderMap.put(inorder[i], i);
+        return buildTree(preorder, 0, n - 1);
     }
 
-    private TreeNode buildTree(int[] preorder, int left, int right, Map<Integer, Integer> inorderMap) {
+    private TreeNode buildTree(int[] preorder, int left, int right) {
         if (right < left) return null;
 
         final int rootValue = preorder[preorderIndex++];
         final TreeNode root = new TreeNode(rootValue);
+        final int inIndex = inorderMap.get(rootValue);
 
-        root.left = buildTree(preorder, left, inorderMap.get(rootValue) - 1, inorderMap);
-        root.right = buildTree(preorder, inorderMap.get(rootValue) + 1, right, inorderMap);
+        root.left = buildTree(preorder, left, inIndex - 1);
+        root.right = buildTree(preorder, inIndex + 1, right);
+        return root;
+    }
+
+    public TreeNode buildTree1(int[] preorder, int[] inorder) {
+        final int n = preorder.length;
+        if (n == 0) return null;
+
+        preorderIndex = 0;
+        inorderMap.clear();
+        for (int i = 0; i < n; i++) inorderMap.put(inorder[i], i);
+
+        return buildTree1(preorder, 0, 0, n - 1);
+    }
+
+    private TreeNode buildTree1(int[] preorder, int preIndex, int left, int right) {
+        if (preorder.length - 1 < preIndex || right < left) return null;
+
+        final int rootValue = preorder[preorderIndex++];
+        final TreeNode root = new TreeNode(rootValue);
+        final int inIndex = inorderMap.get(rootValue);
+
+        root.left = buildTree1(preorder, preIndex + 1, left, inIndex - 1);
+        root.right = buildTree1(preorder, preIndex + inIndex - left + 1, inIndex + 1, right);
         return root;
     }
 }
