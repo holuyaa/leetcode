@@ -38,6 +38,20 @@ public class Q0114 {
     }
 
     public void flatten1(TreeNode root) {
+        prev = null;
+        helper1(root);
+    }
+
+    private void helper1(TreeNode node) {
+        if (node == null) return;
+        helper1(node.right);
+        helper1(node.left);
+        node.right = prev;
+        node.left = null;
+        prev = node;
+    }
+
+    public void flatten2(TreeNode root) {
         TreeNode cur = root;
         while (cur != null) {
             if (cur.left != null) {

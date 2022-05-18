@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.function.Consumer;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static com.leetcode.Nodes.toArray;
+import static org.junit.jupiter.api.Assertions.*;
 
 class Q0114Test {
 
@@ -32,6 +33,12 @@ class Q0114Test {
     void flatten1() {
         final Q0114 q = new Q0114();
         flatten(q::flatten1);
+    }
+
+    @Test
+    void flatten2() {
+        final Q0114 q = new Q0114();
+        flatten(q::flatten2);
     }
 
     private void flatten(Consumer<TreeNode> func) {
