@@ -28,6 +28,12 @@ class Q0114Test {
         flatten(q::flatten);
     }
 
+    @Test
+    void flatten1() {
+        final Q0114 q = new Q0114();
+        flatten(q::flatten1);
+    }
+
     private void flatten(Consumer<TreeNode> func) {
         for (int i = 0; i < TESTCASES.length; i++) {
             final TreeNode node = Nodes.treeOf(TESTCASES[i]);
@@ -48,9 +54,12 @@ class Q0114Test {
         count--;
 
         final Integer[] result = new Integer[count];
+
         curr = root;
-        for (int i = 0; i < count; i += 2, curr = curr.right) result[i] = curr.val;
+        for (int i = 0; i < count ; i += 2) {
+            result[i] = curr.val;
+            curr = curr.right;
+        }
         return result;
     }
-
 }
