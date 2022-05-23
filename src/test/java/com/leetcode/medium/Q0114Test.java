@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.function.Consumer;
 
-import static com.leetcode.Nodes.toArray;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 class Q0114Test {
 
@@ -41,10 +40,10 @@ class Q0114Test {
         flatten(q::flatten2);
     }
 
-    private void flatten(Consumer<TreeNode> func) {
+    private void flatten(Consumer<TreeNode> consumer) {
         for (int i = 0; i < TESTCASES.length; i++) {
             final TreeNode node = Nodes.treeOf(TESTCASES[i]);
-            func.accept(node);
+            consumer.accept(node);
             final Integer[] actual = toArray(node);
             assertArrayEquals(EXPECTED[i], actual);
         }
@@ -59,11 +58,10 @@ class Q0114Test {
             curr = curr.right;
         }
         count--;
-
         final Integer[] result = new Integer[count];
 
         curr = root;
-        for (int i = 0; i < count ; i += 2) {
+        for (int i = 0; i < count; i += 2) {
             result[i] = curr.val;
             curr = curr.right;
         }
