@@ -37,4 +37,33 @@ public class Q0138 {
         }
         return result;
     }
+
+    public Node copyRandomList1(Node head) {
+        if (head == null) return null;
+
+        Node curr = head;
+        while (curr != null) {
+            final Node copy = new Node(curr.val);
+            copy.next = curr.next;
+            curr.next = copy;
+            curr = copy.next;
+        }
+
+        curr = head;
+        while (curr != null) {
+            if (curr.random != null) curr.next.random = curr.random.next;
+            curr = curr.next.next;
+        }
+
+        final Node result = head.next;
+        curr = head;
+        while (curr != null) {
+            final Node copy = curr.next;
+            final Node next = copy.next;
+            copy.next = next != null ? next.next : null;
+            curr.next = next;
+            curr = next;
+        }
+        return result;
+    }
 }

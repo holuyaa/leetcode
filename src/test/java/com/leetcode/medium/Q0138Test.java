@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -18,9 +19,19 @@ class Q0138Test {
     @Test
     void copyRandomList() {
         final Q0138 q = new Q0138();
+        copyRandomList(q::copyRandomList);
+    }
+
+    @Test
+    void copyRandomList1() {
+        final Q0138 q = new Q0138();
+        copyRandomList(q::copyRandomList1);
+    }
+
+    private void copyRandomList(Function<Node, Node> func) {
         for (Integer[][] testcase : TESTCASES) {
             final Node expected = toNode(testcase);
-            final Node actual = q.copyRandomList(expected);
+            final Node actual = func.apply(expected);
             System.out.println(actual);
             assertThat(toArray(actual), is(testcase));
         }
