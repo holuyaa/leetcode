@@ -54,6 +54,25 @@ public class Q0131 {
     }
 
     public List<List<String>> partition1(String s) {
-        return null;
+        final int len = s.length();
+        final List<List<String>> result = new ArrayList<>();
+        partition1(s, 0, result, new String[s.length()], 0, new boolean[len][len]);
+        return result;
+    }
+
+    private void partition1(String s, int start, List<List<String>> result, String[] array, int pos, boolean[][] dp) {
+        if (start == s.length()) {
+            result.add(convertArrayToList(array));
+            return;
+        }
+        for (int end = start; end < s.length(); end++) {
+            if (s.charAt(end) == s.charAt(start) && (end - start <= 2 || dp[start + 1][end - 1])) {
+                dp[start][end] = true;
+                final String sub = s.substring(start, end + 1);
+                array[pos] = sub;
+                partition1(s, end + 1, result, array, pos + 1, dp);
+                array[pos] = null;
+            }
+        }
     }
 }
