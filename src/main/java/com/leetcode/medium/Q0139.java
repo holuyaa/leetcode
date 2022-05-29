@@ -21,4 +21,21 @@ public class Q0139 {
 
         return dp[s.length()];
     }
+
+    public boolean wordBreak1(String s, List<String> wordDict) {
+        final Set<String> set = new HashSet<>(wordDict);
+        final boolean[] dp = new boolean[s.length() + 1];
+        dp[0] = true;
+
+        for (int end = 1; end <= s.length(); end++) {
+            for (int start = end - 1; start >= 0; start--) {
+                if (dp[start] && set.contains(s.substring(start, end))) {
+                    dp[end] = true;
+                    break;
+                }
+            }
+        }
+
+        return dp[s.length()];
+    }
 }
