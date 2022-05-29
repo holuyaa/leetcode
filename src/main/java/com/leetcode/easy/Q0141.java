@@ -25,4 +25,15 @@ public class Q0141 {
         }
         return false;
     }
+
+    public Boolean hasCycle1(ListNode head) {
+        ListNode walker = head;
+        ListNode runner = head;
+        while (runner != null && runner.next != null) {
+            walker = walker.next;
+            runner = runner.next.next;
+            if (walker == runner) return true;
+        }
+        return false;
+    }
 }
