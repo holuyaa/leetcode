@@ -33,4 +33,9 @@ public class Q0169 {
 
         return 1;
     }
+
+    public int majorityElement2(int[] numbers) {
+        Arrays.sort(numbers);
+        return numbers[numbers.length / 2];
+    }
 }

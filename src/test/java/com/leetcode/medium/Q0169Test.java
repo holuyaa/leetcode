@@ -33,6 +33,12 @@ class Q0169Test {
         majorityElement(q::majorityElement1);
     }
 
+    @Test
+    void majorityElement2() {
+        final Q0169 q = new Q0169();
+        majorityElement(q::majorityElement2);
+    }
+
     private void majorityElement(ToIntFunction<int[]> func) {
         for (int i = 0; i < TESTCASES.length; i++) {
             final int actual = func.applyAsInt(TESTCASES[i]);
