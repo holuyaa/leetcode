@@ -1,4 +1,4 @@
-package com.leetcode.medium;
+package com.leetcode.easy;
 
 import org.junit.jupiter.api.Test;
 
@@ -37,6 +37,18 @@ class Q0169Test {
     void majorityElement2() {
         final Q0169 q = new Q0169();
         majorityElement(q::majorityElement2);
+    }
+
+    @Test
+    void majorityElement3() {
+        final Q0169 q = new Q0169();
+        majorityElement(q::majorityElement3);
+    }
+
+    @Test
+    void majorityElement4() {
+        final Q0169 q = new Q0169();
+        majorityElement(q::majorityElement4);
     }
 
     private void majorityElement(ToIntFunction<int[]> func) {

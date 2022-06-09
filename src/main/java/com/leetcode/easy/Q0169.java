@@ -1,4 +1,4 @@
-package com.leetcode.medium;
+package com.leetcode.easy;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -37,5 +37,34 @@ public class Q0169 {
     public int majorityElement2(int[] numbers) {
         Arrays.sort(numbers);
         return numbers[numbers.length / 2];
+    }
+
+    /**
+     * Boyer-Moore voting
+     */
+    public int majorityElement3(int[] numbers) {
+        int count = 0;
+        int major = 0;
+        for (int num : numbers) {
+            if (count == 0) major = num;
+            if (num == major) count++;
+            else count--;
+        }
+        return major;
+    }
+
+    public int majorityElement4(int[] numbers) {
+        final int[] bit = new int[32];
+        for (int num : numbers) {
+            for (int i = 0; i < 32; i++) {
+                if ((num >> (31 - i) & 1) == 1) bit[i]++;
+            }
+        }
+        int ret = 0;
+        for (int i = 0; i < 32; i++) {
+            bit[i] = bit[i] > numbers.length / 2 ? 1 : 0;
+            ret += bit[i] * (1 << (31 - i));
+        }
+        return ret;
     }
 }
