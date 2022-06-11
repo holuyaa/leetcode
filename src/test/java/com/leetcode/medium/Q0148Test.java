@@ -4,6 +4,8 @@ import com.leetcode.ListNode;
 import com.leetcode.Nodes;
 import org.junit.jupiter.api.Test;
 
+import java.util.function.Function;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Q0148Test {
@@ -23,14 +25,28 @@ class Q0148Test {
     @Test
     void sortList() {
         final Q0148 q = new Q0148();
+        sortList(q::sortList);
+    }
+
+    @Test
+    void sortList1() {
+        final Q0148 q = new Q0148();
+        sortList(q::sortList1);
+    }
+
+    private void sortList(Function<ListNode, ListNode> func) {
         for (int i = 0; i < TESTCASES.length; i++) {
-            final ListNode actual = q.sortList(Nodes.listOf(TESTCASES[i]));
+            final ListNode actual = func.apply(Nodes.listOf(TESTCASES[i]));
             System.out.println(actual);
-            ListNode node = actual;
-            for (int j = 0; j < EXPECTED[i].length; j++) {
-                assertEquals(EXPECTED[i][j], node.val);
-                node = node.next;
-            }
+            assertListEqualsArray(actual, EXPECTED[i]);
+        }
+    }
+
+    private void assertListEqualsArray(ListNode actual, int[] expect) {
+        ListNode node = actual;
+        for (int num : expect) {
+            assertEquals(num, node.val);
+            node = node.next;
         }
     }
 }
