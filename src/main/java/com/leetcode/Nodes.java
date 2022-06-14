@@ -1,8 +1,5 @@
 package com.leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Nodes {
     public static ListNode listOf(int[] array) {
         if (array == null || array.length == 0) return null;
@@ -13,6 +10,23 @@ public class Nodes {
             next = next.next;
         }
         return root;
+    }
+
+    public static int[] toArray(ListNode root) {
+        final int count = count(root);
+        final int[] result = new int[count];
+        ListNode node = root;
+        for (int i = 0; i < count; i++) {
+            result[i] = node.val;
+            node = node.next;
+        }
+        return result;
+    }
+
+    private static int count(ListNode root) {
+        int count = 0;
+        for (ListNode node = root; node != null; node = node.next) count++;
+        return count;
     }
 
     public static TreeNode treeOf(Integer[] array) {
