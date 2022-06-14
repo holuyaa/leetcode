@@ -15,4 +15,15 @@ public class Q0198 {
         }
         return dp[n - 1];
     }
+
+    public int rob1(int[] numbers) {
+        return rob1(numbers, numbers.length - 1);
+    }
+
+    private int rob1(int[] numbers, int pos) {
+        if (pos == 0) return numbers[0];
+        if (pos < 0) return 0;
+
+        return Math.max(numbers[pos] + rob1(numbers, pos - 2), rob1(numbers, pos - 1));
+    }
 }
