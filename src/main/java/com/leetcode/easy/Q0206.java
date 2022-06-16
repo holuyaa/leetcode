@@ -18,4 +18,14 @@ public class Q0206 {
         }
         return curr;
     }
+
+    public ListNode reverseList1(ListNode head) {
+        if (head == null || head.next == null) return head;
+
+        final ListNode last = reverseList1(head.next);
+        head.next.next = head;
+        head.next = null;
+
+        return last;
+    }
 }
