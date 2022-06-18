@@ -46,6 +46,12 @@ class Q0189Test {
         rotate(q::rotate1);
     }
 
+    @Test
+    void rotate2() {
+        final Q0189 q = new Q0189();
+        rotate(q::rotate2);
+    }
+
     private void rotate(BiConsumer<int[], Integer> consumer) {
         for (int i = 0; i < TESTCASES.length; i++) {
             final int[] actual = new int[TESTCASES[i].length];
