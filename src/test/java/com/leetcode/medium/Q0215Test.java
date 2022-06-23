@@ -12,16 +12,19 @@ class Q0215Test {
     private static final int[][] TESTCASES = new int[][]{
             {3, 2, 1, 5, 6, 4},
             {3, 2, 3, 1, 2, 4, 5, 5, 6},
+            {1},
     };
 
     private static final int[] K = new int[]{
             2,
             4,
+            1,
     };
 
     private static final int[] EXPECTED = new int[]{
             5,
             4,
+            1,
     };
 
     @Test
@@ -34,6 +37,12 @@ class Q0215Test {
     void findKthLargest1() {
         final Q0215 q = new Q0215();
         findKthLargest(q::findKthLargest1);
+    }
+
+    @Test
+    void findKthLargest2() {
+        final Q0215 q = new Q0215();
+        findKthLargest(q::findKthLargest2);
     }
 
     private void findKthLargest(ToIntBiFunction<int[], Integer> func) {

@@ -19,4 +19,35 @@ public class Q0215 {
         //noinspection ConstantConditions
         return queue.peek();
     }
+
+    public int findKthLargest2(int[] numbers, int k) {
+        return quickSelect(numbers, 0, numbers.length - 1, numbers.length - k);
+    }
+
+    private int quickSelect(int[] numbers, int left, int right, int k) {
+        if (left == right) return numbers[k];
+        final int p = partition(numbers, left, right);
+        if (p < k) return quickSelect(numbers, p + 1, right, k);
+        else if (p > k) return quickSelect(numbers, left, p - 1, k);
+        return numbers[p];
+    }
+
+    private int partition(int[] numbers, int left, int right) {
+        final int pivot = numbers[right];
+        int low = left;
+        for (int high = left; high < right; high++) {
+            if (pivot < numbers[high]) continue;
+            swap(numbers, low, high);
+            low++;
+        }
+        numbers[right] = numbers[low];
+        numbers[low] = pivot;
+        return low;
+    }
+
+    private void swap(int[] numbers, int a, int b) {
+        final int tmp = numbers[a];
+        numbers[a] = numbers[b];
+        numbers[b] = tmp;
+    }
 }
