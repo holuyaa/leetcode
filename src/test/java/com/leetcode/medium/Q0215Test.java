@@ -45,6 +45,24 @@ class Q0215Test {
         findKthLargest(q::findKthLargest2);
     }
 
+    @Test
+    void findKthLargest3() {
+        final Q0215 q = new Q0215();
+        findKthLargest(q::findKthLargest3);
+    }
+
+    @Test
+    void findKthLargest4() {
+        final Q0215 q = new Q0215();
+        findKthLargest(q::findKthLargest4);
+    }
+
+    @Test
+    void findKthLargest5() {
+        final Q0215 q = new Q0215();
+        findKthLargest(q::findKthLargest5);
+    }
+
     private void findKthLargest(ToIntBiFunction<int[], Integer> func) {
         for (int i = 0; i < TESTCASES.length; i++) {
             final int[] tc = new int[TESTCASES[i].length];

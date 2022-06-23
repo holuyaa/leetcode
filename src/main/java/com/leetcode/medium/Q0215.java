@@ -3,6 +3,7 @@ package com.leetcode.medium;
 import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Random;
 
 public class Q0215 {
     public int findKthLargest(int[] numbers, int k) {
@@ -28,7 +29,7 @@ public class Q0215 {
         if (left == right) return numbers[k];
         final int p = partition(numbers, left, right);
         if (p < k) return quickSelect(numbers, p + 1, right, k);
-        else if (p > k) return quickSelect(numbers, left, p - 1, k);
+        else if (k < p) return quickSelect(numbers, left, p - 1, k);
         return numbers[p];
     }
 
@@ -49,5 +50,61 @@ public class Q0215 {
         final int tmp = numbers[a];
         numbers[a] = numbers[b];
         numbers[b] = tmp;
+    }
+
+    public int findKthLargest3(int[] numbers, int k) {
+        k = numbers.length - k;
+        int low = 0;
+        int high = numbers.length - 1;
+
+        while (low < high) {
+            final int p = partition(numbers, low, high);
+            if (p < k) low = p + 1;
+            else if (k < p) high = p - 1;
+            else break;
+        }
+        return numbers[k];
+    }
+
+    public int findKthLargest4(int[] numbers, int k) {
+        shuffle(numbers);
+        return findKthLargest3(numbers, k);
+    }
+
+    private void shuffle(int[] numbers) {
+        final Random random = new Random();
+        for(int i = 1; i < numbers.length; i++) {
+            final int r = random.nextInt(i + 1);
+            swap(numbers, i, r);
+        }
+    }
+
+    public int findKthLargest5(int[] numbers, int k) {
+        shuffle(numbers);
+        k = numbers.length - k;
+        int low = 0;
+        int high = numbers.length - 1;
+
+        while (low < high) {
+            final int p = partition1(numbers, low, high);
+            if (p < k) low = p + 1;
+            else if (k < p) high = p - 1;
+            else break;
+        }
+        return numbers[k];
+    }
+
+    private int partition1(int[] numbers, int left, int right) {
+        final int pivot = numbers[left];
+        int low = left;
+        int high = right;
+        while (low < high) {
+            while (pivot < numbers[high]) high--;
+            while (low < high && numbers[low] <= pivot) low++;
+            swap(numbers, low, high);
+        }
+        numbers[left] = numbers[low];
+        numbers[low] = pivot;
+        return low;
     }
 }
