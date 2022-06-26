@@ -2,30 +2,33 @@ package com.leetcode.medium;
 
 public class Q0221 {
 
-    /* brute force  - 1781ms */
+    /* brute force */
     public int maximalSquare(char[][] matrix) {
-        int maxArea = 0;
-        for (int y = 0; y < matrix.length; y++) {
-            for (int x = 0; x < matrix[y].length; x++) {
+        final int lenX = matrix[0].length;
+        final int lenY = matrix.length;
+        int maxLen= 0;
+        for (int y = 0; y < lenY; y++) {
+            for (int x = 0; x < lenX; x++) {
                 if (matrix[y][x] == '0') continue;
-                maxArea = Math.max(maxArea, getSquareArea(matrix, x, y));
+                final int n = Math.min(lenX - x, lenY - y);
+                if (maxLen < n) maxLen = Math.max(maxLen, getMaxLen(matrix, x, y, n));
             }
         }
-        return maxArea;
+        return maxLen * maxLen;
     }
 
-    private int getSquareArea(char[][] matrix, int startX, int startY) {
-        final int n = Math.min(matrix[startY].length - startX, matrix.length - startY);
+    private int getMaxLen(char[][] matrix, int startX, int startY, int n) {
         int i = 1;
         for (; i < n; i++) {
             if (!isSquare(matrix, startX, startY, i)) break;
         }
-        return i * i;
+        return i;
     }
 
     private boolean isSquare(char[][] matrix, int startX, int startY, int n) {
         final int endX = startX + n;
         final int endY = startY + n;
+
         for (int i = startX; i < endX; i++) {
             if (matrix[endY][i] != '1') return false;
         }
