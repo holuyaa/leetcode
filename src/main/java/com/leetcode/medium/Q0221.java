@@ -2,7 +2,7 @@ package com.leetcode.medium;
 
 public class Q0221 {
 
-    /* brute force  - timeout*/
+    /* brute force  - 1781ms */
     public int maximalSquare(char[][] matrix) {
         int maxArea = 0;
         for (int y = 0; y < matrix.length; y++) {
@@ -27,12 +27,10 @@ public class Q0221 {
         final int endX = startX + n;
         final int endY = startY + n;
         for (int i = startX; i < endX; i++) {
-            System.out.println(matrix[startY + n][i]);
             if (matrix[endY][i] != '1') return false;
         }
 
         for (int i = startY; i < endY; i++) {
-            System.out.println(matrix[i][endX]);
             if (matrix[i][startX + n] != '1') return false;
         }
 
