@@ -39,4 +39,22 @@ public class Q0221 {
 
         return matrix[endY][endX] == '1';
     }
+
+    public int maximalSquare1(char[][] matrix) {
+        final int rows = matrix.length;
+        final int cols = rows == 0 ? 0 : matrix[0].length;
+        final int[][] dp = new int[rows + 1][cols + 1];
+
+        int maxSquareLen = 0;
+        for (int r = 1; r <= rows; r++) {
+            for (int c = 1; c <= cols; c++) {
+                final int prevR = r - 1;
+                final int prevC = c - 1;
+                if (matrix[prevR][prevC] == '0') continue;
+                dp[r][c] = Math.min(Math.min(dp[prevR][c], dp[r][prevC]), dp[prevR][prevC]) + 1;
+                maxSquareLen = Math.max(maxSquareLen, dp[r][c]);
+            }
+        }
+        return maxSquareLen * maxSquareLen;
+    }
 }
