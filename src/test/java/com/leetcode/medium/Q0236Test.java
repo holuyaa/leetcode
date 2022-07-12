@@ -55,12 +55,26 @@ class Q0236Test {
     @Test
     void lowestCommonAncestor() {
         final Q0236 q = new Q0236();
+        lowestCommonAncestor(q::lowestCommonAncestor);
+    }
+
+    @Test
+    void lowestCommonAncestor1() {
+        final Q0236 q = new Q0236();
+        lowestCommonAncestor(q::lowestCommonAncestor1);
+    }
+
+    private void lowestCommonAncestor(Function func) {
         for (int i = 0; i < TESTCASES.length; i++) {
             final Map<Integer, TreeNode> map = new HashMap<>();
-            final TreeNode actual = q.lowestCommonAncestor(treeOf(TESTCASES[i], map), map.get(P[i]), map.get(Q[i]));
+            final TreeNode actual = func.apply(treeOf(TESTCASES[i], map), map.get(P[i]), map.get(Q[i]));
             assertThat(actual, notNullValue());
             System.out.println("" + actual.val);
             assertThat(actual.val, is(EXPECTED[i]));
         }
+    }
+
+    public interface Function {
+        TreeNode apply(TreeNode root, TreeNode p, TreeNode q);
     }
 }
