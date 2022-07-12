@@ -1,11 +1,12 @@
 package com.leetcode.easy;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class Q0020 {
 
     public boolean isValid(String s) {
-        final Stack<Character> stack = new Stack<>();
+        final Deque<Character> stack = new ArrayDeque<>();
         for (char c : s.toCharArray()) {
             switch (c) {
                 case '(':
@@ -20,7 +21,7 @@ public class Q0020 {
                 case ')':
                 case ']':
                 case '}':
-                    if (stack.empty() || stack.pop() != c) {
+                    if (stack.isEmpty() || stack.pop() != c) {
                         return false;
                     }
             }

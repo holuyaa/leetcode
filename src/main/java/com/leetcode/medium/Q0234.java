@@ -2,7 +2,8 @@ package com.leetcode.medium;
 
 import com.leetcode.ListNode;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Definition for singly-linked list.
@@ -16,7 +17,7 @@ import java.util.Stack;
  */
 public class Q0234 {
     public boolean isPalindrome(ListNode head) {
-        final Stack<Integer> stack = new Stack<>();
+        final Deque<Integer> stack = new ArrayDeque<>();
         ListNode slow = head;
         ListNode fast = head;
         while (fast != null && fast.next != null) {

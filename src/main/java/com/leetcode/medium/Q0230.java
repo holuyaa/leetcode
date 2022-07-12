@@ -2,7 +2,8 @@ package com.leetcode.medium;
 
 import com.leetcode.TreeNode;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Definition for a binary tree node.
@@ -37,7 +38,7 @@ public class Q0230 {
     }
 
     public int kthSmallest1(TreeNode root , int k) {
-        final Stack<TreeNode> stack = new Stack<>();
+        final Deque<TreeNode> stack = new ArrayDeque<>();
 
         TreeNode curr = root;
         while (true) {

@@ -2,21 +2,22 @@ package com.leetcode.medium;
 
 import com.leetcode.TreeNode;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
+ * int val;
+ * TreeNode left;
+ * TreeNode right;
+ * TreeNode() {}
+ * TreeNode(int val) { this.val = val; }
+ * TreeNode(int val, TreeNode left, TreeNode right) {
+ * this.val = val;
+ * this.left = left;
+ * this.right = right;
+ * }
  * }
  */
 public class Q0098 {
@@ -26,9 +27,9 @@ public class Q0098 {
     }
 
     private boolean isValidBST(TreeNode node, long min, long max) {
-       if (node == null) return true;
-       if (max <= node.val || node.val <= min) return false;
-       return isValidBST(node.left, min, node.val) && isValidBST(node.right, node.val, max);
+        if (node == null) return true;
+        if (max <= node.val || node.val <= min) return false;
+        return isValidBST(node.left, min, node.val) && isValidBST(node.right, node.val, max);
     }
 
     public boolean isValidBST1(TreeNode root) {
@@ -45,7 +46,7 @@ public class Q0098 {
     }
 
     public boolean isValidBST2(TreeNode root) {
-        final Stack<TreeNode> stack = new Stack<>();
+        final Deque<TreeNode> stack = new ArrayDeque<>();
         TreeNode curr = root;
         TreeNode prev = null;
         while (curr != null || !stack.isEmpty()) {

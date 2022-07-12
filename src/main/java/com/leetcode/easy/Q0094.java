@@ -2,9 +2,10 @@ package com.leetcode.easy;
 
 import com.leetcode.TreeNode;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * Definition for a binary tree node.
@@ -37,7 +38,7 @@ public class Q0094 {
 
     public List<Integer> inorderTraversal1(TreeNode root) {
         final List<Integer> result = new ArrayList<>();
-        final Stack<TreeNode> stack = new Stack<>();
+        final Deque<TreeNode> stack = new ArrayDeque<>();
         TreeNode curr = root;
         while (curr != null || !stack.isEmpty()) {
             while (curr != null) {
