@@ -7,10 +7,10 @@ import java.util.*;
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
+ * int val;
+ * TreeNode left;
+ * TreeNode right;
+ * TreeNode(int x) { val = x; }
  * }
  */
 public class Q0236 {
@@ -61,5 +61,14 @@ public class Q0236 {
         while (!ancestors.contains(q)) q = parent.get(q);
 
         return q;
+    }
+
+    public TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || root == p || root == q) return root;
+        final TreeNode left = lowestCommonAncestor2(root.left, p, q);
+        final TreeNode right = lowestCommonAncestor2(root.right, p, q);
+        if (left == null) return right;
+        else if (right == null) return left;
+        return root;
     }
 }
