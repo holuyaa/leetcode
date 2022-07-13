@@ -70,6 +70,12 @@ class Q0236Test {
         lowestCommonAncestor(q::lowestCommonAncestor2);
     }
 
+    @Test
+    void lowestCommonAncestor3() {
+        final Q0236 q = new Q0236();
+        lowestCommonAncestor(q::lowestCommonAncestor3);
+    }
+
     private void lowestCommonAncestor(Function func) {
         for (int i = 0; i < TESTCASES.length; i++) {
             final Map<Integer, TreeNode> map = new HashMap<>();

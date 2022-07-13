@@ -71,4 +71,30 @@ public class Q0236 {
         else if (right == null) return left;
         return root;
     }
+
+    public TreeNode lowestCommonAncestor3(TreeNode root, TreeNode p, TreeNode q) {
+        final Map<TreeNode, TreeNode> parent = new HashMap<>();
+        final Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode curr = root;
+        while (curr != null || !stack.isEmpty()) {
+            while (curr != null) {
+                if (curr.left != null) parent.put(curr.left, curr);
+                stack.push(curr);
+                curr = curr.left;
+            }
+            curr = stack.pop();
+            if (curr.right != null) parent.put(curr.right, curr);
+            curr = curr.right;
+        }
+
+        final Set<TreeNode> ancestors = new HashSet<>();
+        while (p != null) {
+            ancestors.add(p);
+            p = parent.get(p);
+        }
+
+        while (!ancestors.contains(q)) q = parent.get(q);
+
+        return q;
+    }
 }
