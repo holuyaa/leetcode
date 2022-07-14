@@ -86,7 +86,7 @@ class Q0236Test {
         }
     }
 
-    public interface Function {
+    private interface Function {
         TreeNode apply(TreeNode root, TreeNode p, TreeNode q);
     }
 }
